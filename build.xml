@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EDF" default="install" basedir=".">
+	<property name="lib"	location="../lib/"/>
+	<property name="src"	location="dist/${ant.project.name}-src.zip"/>
+	<property name="cls"	location="dist/${ant.project.name}-cls.zip"/>
+	<property name="jar"	location="dist/Extended_Depth_Field.jar"/>
+		
+	<path id="lib.path">
+		<pathelement path="${lib}/ij.jar"/>
+	</path>
+
+	<!-- Compilation and distribution in zip and jar file -->
+	<target name="install">
+		<copy file="plugins.config" toDir="bin" />			
+		<mkdir dir="dist"/>
+		<zip destfile="${src}" basedir="src" />
+	    <zip destfile="${cls}" basedir="bin" />
+		<jar destfile="${jar}" basedir="bin" />
+		<copy file="${jar}" toDir="../../Imaging-Software/ImageJ.app/plugins/" />	
+		<copy toDir="bin/imageware"><fileset dir="imageware"/></copy>
+	</target>
+			
+	<!-- Clean classes, jar and zip -->
+	<target name="clean" description="Clean up build products">
+		<delete dir="bin"/>
+	    <delete dir="dist"/>
+	</target>
+</project>
+	
