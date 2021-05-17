@@ -10,7 +10,7 @@ Daniel Sage, Alex Prudencio, Jesse Berent, Niels Quack, Brigitte Forster
 Biomedical Imaging Group (BIG)
 Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
 
-![alt text](edf_illustration_fly,jpg "Illustration")
+![alt text](edf_illustration_fly.jpg "Illustration")
 
 ### Reference
 B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser, Extended Depth-of-Focus for Multi-Channel Microscopy Images: A Complex Wavelet Approach Proceedings of the Second IEEE International Symposium on Biomedical Imaging, Arlington VA, USA, 2004.
