@@ -49,8 +49,8 @@ public class SimpleColorEDF_Demo {
 
 	public static void main(String[] args) {
 		new ImageJ();
-		ImagePlus imp = IJ.openImage("./data/skeleton-zeiss/stack.tif");
-		//ImagePlus imp = IJ.openImage("./data/dome-isrec/stack.tif");
+		//ImagePlus imp = IJ.openImage("./data/skeleton-zeiss/stack.tif");
+		ImagePlus imp = IJ.openImage("./data/dome-isrec/stack.tif");
 		imp.show();
 		
 		EDF_Easy_ edf = new EDF_Easy_();
