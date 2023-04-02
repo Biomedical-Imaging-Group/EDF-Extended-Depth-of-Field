@@ -1,48 +1,44 @@
-/*
- * EDF Extended Depth of Field
- * http://bigwww.epfl.ch/demo/edf/
- *
- * Organization: Biomedical Imaging Group (BIG)
- * Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
- * Authors: Daniel Sage, Alex Prudencio, Jesse Berent, Niels Quack, Brigitte Forster
+/* 
+ * EDF - Extended Depth of Field
  * 
- * Reference: B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser
- * Complex Wavelets for Extended Depth-of-Field: A New Method for the Fusion
- * of Multichannel Microscopy Images, Microscopy Research and Techniques, 2004
- * 
- * Condition of use: We expect you to include adequate citation whenever you present 
- * or publish results that are based on it.
- * 
- * History:
- * - Updated (Daniel Sage, 21 December 2010)
- * - Updated (Daniel Sage, 17 May 2021)
+ * Reference: B. Forster et al., Complex Wavelets for Extended Depth-of-Field: 
+ * A New Method for the Fusion of Multichannel Microscopy Images, 
+ * Microscopy Research and Techniques, 2004.
  */
 
 /*
- * BSD 2-Clause License
- *
- * Copyright (c) 2007-2021, EPFL, All rights reserved.
+ * Copyright 2006-2023 Biomedical Imaging Group at the EPFL.
  * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *  this list of conditions and the following disclaimer in the documentation
- *  and/or other materials provided with the distribution.
+ * EDF is free software: you can redistribute it and/or modify it under the terms of the GNU 
+ * General Public License as published by the Free Software Foundation, either version 3 of 
+ * the License, or (at your option) any later version.
  * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * EDF is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * EDF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* 
+ * Java Code Project: EDF - Extended Depth of Focus
+ * 
+ * Author: Daniel Sage, ALex Prudencio
+ * Organization: Biomedical Imaging Group (BIG)
+ * Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
+ *
+ * Information: http://bigwww.epfl.ch/demo/edf/
+ *
+ * References: 
+ * B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser
+ * Complex Wavelets for Extended Depth-of-Field: A New Method for the Fusion
+ * of Multichannel Microscopy Images, Microscopy Research and Techniques, 
+ * 65(1-2), pp. 33-42, September 2004.
+ * *
+ * B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser, 
+ * Extended Depth-of-Focus for Multi-Channel Microscopy Images 
+ * Proceedings of IEEE International Symposium on Biomedical Imaging, 2004.
  */
 
 package surfacemap;
@@ -196,7 +192,8 @@ public class SurfaceMap3D implements Runnable {
 	 * @author alex
 	 *
 	 */
-	class CustomWindow extends JPanel implements MouseListener, MouseMotionListener, ChangeListener, ActionListener, ItemListener {
+	class CustomWindow extends JPanel
+			implements MouseListener, MouseMotionListener, ChangeListener, ActionListener, ItemListener {
 
 		private GridBagLayout gbl = new GridBagLayout();
 		private GridBagConstraints gbc = new GridBagConstraints();
@@ -213,7 +210,8 @@ public class SurfaceMap3D implements Runnable {
 
 		private JComboBox displayChoice, lutChoice;
 //		private final String [] displayName = { "Dots", "Lines", "Mesh", "Filled"} ;
-		private final String[] lutName = { "Original Colors", "Grayscale", "Spectrum LUT", "Fire LUT", "Thermal LUT", "Orange" };
+		private final String[] lutName = { "Original Colors", "Grayscale", "Spectrum LUT", "Fire LUT", "Thermal LUT",
+				"Orange" };
 
 		private JSlider slider1, slider2, slider3, slider4, slider5;
 		private float sliderValue1, sliderValue2, sliderValue3;
@@ -342,14 +340,16 @@ public class SurfaceMap3D implements Runnable {
 			Dimension sliderDimension = new Dimension(95, 40);
 
 			slider1 = new JSlider(JSlider.HORIZONTAL, 50, 118, 84);
-			slider1.setBorder(new TitledBorder(empty, "Perspective", TitledBorder.CENTER, TitledBorder.TOP, new Font("Sans", Font.PLAIN, 12)));
+			slider1.setBorder(new TitledBorder(empty, "Perspective", TitledBorder.CENTER, TitledBorder.TOP,
+					new Font("Sans", Font.PLAIN, 12)));
 			slider1.setPreferredSize(sliderDimension);
 			slider1.addChangeListener(this);
 			slider1.addMouseListener(this);
 			buttonPanel2.add(slider1);
 
 			slider2 = new JSlider(JSlider.HORIZONTAL, 0, 30, 0);
-			slider2.setBorder(new TitledBorder(empty, "Scale", TitledBorder.CENTER, TitledBorder.TOP, new Font("Sans", Font.PLAIN, 12)));
+			slider2.setBorder(new TitledBorder(empty, "Scale", TitledBorder.CENTER, TitledBorder.TOP,
+					new Font("Sans", Font.PLAIN, 12)));
 			slider2.addChangeListener(this);
 			slider2.setPreferredSize(sliderDimension);
 			slider2.addChangeListener(this);
@@ -357,14 +357,16 @@ public class SurfaceMap3D implements Runnable {
 			buttonPanel2.add(slider2);
 
 			slider3 = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
-			slider3.setBorder(new TitledBorder(empty, "Lighting", TitledBorder.CENTER, TitledBorder.TOP, new Font("Sans", Font.PLAIN, 12)));
+			slider3.setBorder(new TitledBorder(empty, "Lighting", TitledBorder.CENTER, TitledBorder.TOP,
+					new Font("Sans", Font.PLAIN, 12)));
 			slider3.setPreferredSize(sliderDimension);
 			slider3.addChangeListener(this);
 			slider3.addMouseListener(this);
 			buttonPanel2.add(slider3);
 
 			slider4 = new JSlider(JSlider.HORIZONTAL, 0, 10, 0);
-			slider4.setBorder(new TitledBorder(empty, "Smoothing", TitledBorder.CENTER, TitledBorder.TOP, new Font("Sans", Font.PLAIN, 12)));
+			slider4.setBorder(new TitledBorder(empty, "Smoothing", TitledBorder.CENTER, TitledBorder.TOP,
+					new Font("Sans", Font.PLAIN, 12)));
 			slider4.setPreferredSize(sliderDimension);
 			slider4.addChangeListener(this);
 			slider4.addMouseListener(this);
@@ -376,7 +378,8 @@ public class SurfaceMap3D implements Runnable {
 			slider5.setMinorTickSpacing(1);
 			slider5.setSnapToTicks(true);
 			slider5.setPaintTicks(true);
-			slider5.setBorder(new TitledBorder(empty, "z-step", TitledBorder.CENTER, TitledBorder.TOP, new Font("Sans", Font.PLAIN, 12)));
+			slider5.setBorder(new TitledBorder(empty, "z-step", TitledBorder.CENTER, TitledBorder.TOP,
+					new Font("Sans", Font.PLAIN, 12)));
 			slider5.setPreferredSize(sliderDimension);
 			slider5.addChangeListener(this);
 			slider5.addMouseListener(this);
@@ -618,7 +621,8 @@ public class SurfaceMap3D implements Runnable {
 					dy = (5 * dy + ydiff) / 6.f;
 
 					if (shift == false) pic2.tr.setMouseMovement((float) xdiff, (float) ydiff);
-					else pic2.tr.setMouseMovementOffset(xdiff, ydiff);
+					else
+						pic2.tr.setMouseMovementOffset(xdiff, ydiff);
 					xStart = xAct;
 					yStart = yAct;
 				}
@@ -807,22 +811,27 @@ public class SurfaceMap3D implements Runnable {
 				for (int j = 4; j < 8; j++) {
 					if (i + j != 7) cor[k++] = corner[j];
 				}
-				if (corner[i][2] >= corner[7 - i][2] && Misc.inside(corner[i], cor[0], cor[1], cor[2])) corner[i][3] = 1; // hidden
+				if (corner[i][2] >= corner[7 - i][2] && Misc.inside(corner[i], cor[0], cor[1], cor[2]))
+					corner[i][3] = 1; // hidden
 			}
 			for (int j = 4; j < 8; j++) {
 				int k = 0;
 				for (int i = 0; i < 4; i++) {
 					if (i + j != 7) cor[k++] = corner[i];
 				}
-				if (corner[j][2] >= corner[7 - j][2] && Misc.inside(corner[j], cor[0], cor[1], cor[2])) corner[j][3] = 1; // hidden
+				if (corner[j][2] >= corner[7 - j][2] && Misc.inside(corner[j], cor[0], cor[1], cor[2]))
+					corner[j][3] = 1; // hidden
 			}
 
 			for (int i = 0; i < 4; i++)
 				for (int j = 4; j < 8; j++) {
 					if (i + j != 7) {
 						if (corner[i][3] == 1 || corner[j][3] == 1) // hidden
-							imageRegion.setLine(line, corner[i][0], corner[i][1], corner[j][0], corner[j][1], 1, backColor);
-						else imageRegion.setLine(line, corner[i][0], corner[i][1], corner[j][0], corner[j][1], -1, frontColor);
+							imageRegion.setLine(line, corner[i][0], corner[i][1], corner[j][0], corner[j][1], 1,
+									backColor);
+						else
+							imageRegion.setLine(line, corner[i][0], corner[i][1], corner[j][0], corner[j][1], -1,
+									frontColor);
 						line++;
 					}
 				}
@@ -842,9 +851,6 @@ public class SurfaceMap3D implements Runnable {
 		private Image image;
 		private int width;
 		private int height;
-
-		private int xPos;
-		private int yPos;
 
 		private TextField[] textField = null;
 		private Lines[] lines = null;
@@ -1055,7 +1061,6 @@ public class SurfaceMap3D implements Runnable {
 			yoff += dy;
 		}
 
-
 		Transform(int width, int height) {
 			xs = (float) (width / 2. + 0.5);
 			ys = (float) (height / 2. + 0.5);
@@ -1126,7 +1131,8 @@ public class SurfaceMap3D implements Runnable {
 				impTex = imp;
 				isTexture = false;
 			}
-			else isTexture = true;
+			else
+				isTexture = true;
 
 			int widthOrigTex = impTex.getWidth();
 			int heightOrigTex = impTex.getHeight();
@@ -1191,7 +1197,7 @@ public class SurfaceMap3D implements Runnable {
 					mWidth = ipMask.getWidth();
 				}
 
-				Rectangle rect = roi.getBoundingRect();
+				Rectangle rect = roi.getBounds();
 				if (rect.x < 0) rect.x = 0;
 				if (rect.y < 0) rect.y = 0;
 
@@ -1236,7 +1242,8 @@ public class SurfaceMap3D implements Runnable {
 						}
 						catch (RuntimeException e) {
 							e.printStackTrace();
-							IJ.log("pos = " + pos + " " + rect.y + " " + yB + " " + widthOrig + " " + rect.x + " " + xB);
+							IJ.log("pos = " + pos + " " + rect.y + " " + yB + " " + widthOrig + " " + rect.x + " "
+									+ xB);
 						}
 						if ((c & OPAQUE) == OPAQUE) { // opaque
 
@@ -1246,7 +1253,8 @@ public class SurfaceMap3D implements Runnable {
 							int g = ((c >> 8) & 255);
 							int b = ((c) & 255);
 							if (!isLut) lum = (int) (0.299 * r + 0.587 * g + 0.114 * b);
-							else lum = (int) (0xFF & lutPixels[(rect.y + yB) * widthOrig + rect.x + xB]);
+							else
+								lum = (int) (0xFF & lutPixels[(rect.y + yB) * widthOrig + rect.x + xB]);
 							plotList[pos].color = cTex;
 
 							plotList[pos].y = (int) (ratioY * (y * 256 / height - 128));
@@ -1287,7 +1295,8 @@ public class SurfaceMap3D implements Runnable {
 							if (!isLut) {
 								lum = (int) (0.299 * r + 0.587 * g + 0.114 * b);
 							}
-							else lum = (int) (0xFF & lutPixels[yB * widthOrig + xB]);
+							else
+								lum = (int) (0xFF & lutPixels[yB * widthOrig + xB]);
 							plotList[pos].color = cTex;
 
 							plotList[pos].y = (int) (ratioY * (y * 256 / height - 128));
@@ -1325,7 +1334,8 @@ public class SurfaceMap3D implements Runnable {
 								if (yn >= 0 && yn < height && xn >= 0 && xn < width - 1) {
 									dx1 += 1;
 									int pos = yn * width + xn;
-									if (plotList[pos + 1] != null && plotList[pos] != null) dz1 += plotList[pos + 1].z - plotList[pos].z;
+									if (plotList[pos + 1] != null && plotList[pos] != null)
+										dz1 += plotList[pos + 1].z - plotList[pos].z;
 								}
 							}
 
@@ -1341,7 +1351,8 @@ public class SurfaceMap3D implements Runnable {
 								if (yn >= 0 && yn < height - 1 && xn >= 0 && xn < width) {
 									dy2 += 1;
 									int pos = yn * width + xn;
-									if (plotList[pos + width] != null && plotList[pos] != null) dz2 += plotList[pos + width].z - plotList[pos].z;
+									if (plotList[pos + width] != null && plotList[pos] != null)
+										dz2 += plotList[pos + width].z - plotList[pos].z;
 								}
 							}
 
@@ -1602,7 +1613,8 @@ public class SurfaceMap3D implements Runnable {
 								for (int x = xMin; x < xMax; x++) {
 									if ((x & ~511) == 0 && (y & ~511) == 0) { // only for w = h = 512
 
-										if (Misc.inside(x, y, x0, y0, x1, y1, x3, y3) || Misc.inside(x, y, x0, y0, x3, y3, x2, y2)) {
+										if (Misc.inside(x, y, x0, y0, x1, y1, x3, y3)
+												|| Misc.inside(x, y, x0, y0, x3, y3, x2, y2)) {
 
 											int d0 = (x - x0) * (x - x0) + (y - y0) * (y - y0);
 											int d1 = (x - x1) * (x - x1) + (y - y1) * (y - y1);
@@ -1668,7 +1680,8 @@ public class SurfaceMap3D implements Runnable {
 														b /= sumDists;
 													}
 													else {
-														int l = (int) ((d0 * l3 + d1 * l2 + d2 * l1 + d3 * l0) / sumDists);
+														int l = (int) ((d0 * l3 + d1 * l2 + d2 * l1 + d3 * l0)
+																/ sumDists);
 														int c = lut.colors[l];
 														r = (c >> 16) & 0xff;
 														g = (c >> 8) & 0xff;
@@ -1691,7 +1704,6 @@ public class SurfaceMap3D implements Runnable {
 												}
 											}
 											catch (RuntimeException e) {
-												// TODO Auto-generated catch block
 												e.printStackTrace();
 											}
 										}
@@ -1883,7 +1895,8 @@ public class SurfaceMap3D implements Runnable {
 											pixels[pos] = 0xff000000 | (r << 16) | (g << 8) | b;
 										}
 
-										else pixels[pos] = c0;
+										else
+											pixels[pos] = c0;
 									}
 								}
 							}
@@ -2022,7 +2035,8 @@ public class SurfaceMap3D implements Runnable {
 											int b = (int) Math.min(255, l * (c0 & 0xff));
 											pixels[pos] = 0xff000000 | (r << 16) | (g << 8) | b;
 										}
-										else pixels[pos] = c0;
+										else
+											pixels[pos] = c0;
 									}
 								}
 							}
@@ -2076,7 +2090,8 @@ public class SurfaceMap3D implements Runnable {
 										int b = (int) Math.min(255, l * (c0 & 0xff));
 										pixels[pos] = 0xff000000 | (r << 16) | (g << 8) | b;
 									}
-									else pixels[pos] = c0;
+									else
+										pixels[pos] = c0;
 								}
 							}
 						}
@@ -2145,50 +2160,73 @@ public class SurfaceMap3D implements Runnable {
 			colors = new int[256];
 		}
 
-		private final int[] fireTable = { 0, 0, 31, 0, 0, 31, 0, 0, 33, 0, 0, 35, 0, 0, 37, 0, 0, 39, 0, 0, 41, 0, 0, 43, 0, 0, 45, 0, 0, 47, 0, 0, 49, 0, 0, 52, 0, 0, 54, 0, 0,
-				57, 0, 0, 59, 0, 0, 62, 0, 0, 64, 0, 0, 67, 0, 0, 70, 0, 0, 73, 0, 0, 76, 0, 0, 79, 0, 0, 82, 0, 0, 85, 0, 0, 88, 0, 0, 92, 2, 0, 96, 3, 0, 99, 5, 0, 102, 7, 0,
-				105, 10, 0, 108, 13, 0, 112, 15, 0, 116, 17, 0, 119, 20, 0, 122, 22, 0, 126, 25, 0, 130, 28, 0, 134, 31, 0, 138, 33, 0, 141, 35, 0, 145, 38, 0, 149, 41, 0, 152, 43,
-				0, 156, 46, 0, 160, 49, 0, 164, 52, 0, 168, 55, 0, 171, 58, 0, 175, 61, 0, 178, 64, 0, 181, 67, 0, 184, 70, 0, 188, 73, 0, 191, 76, 0, 195, 78, 0, 198, 81, 0, 202,
-				85, 0, 205, 88, 0, 209, 91, 0, 212, 94, 0, 216, 98, 0, 218, 101, 0, 220, 104, 0, 221, 107, 0, 222, 110, 0, 223, 113, 0, 224, 116, 0, 225, 119, 0, 226, 122, 0, 225,
-				126, 0, 224, 129, 0, 222, 133, 0, 219, 136, 0, 217, 140, 0, 214, 143, 0, 212, 146, 0, 209, 148, 0, 206, 150, 0, 202, 153, 0, 198, 155, 0, 193, 158, 0, 189, 160, 0,
-				185, 162, 0, 181, 163, 0, 177, 165, 0, 173, 166, 0, 168, 168, 0, 163, 170, 0, 159, 171, 0, 154, 173, 0, 151, 174, 0, 146, 176, 0, 142, 178, 0, 137, 179, 0, 133,
-				181, 0, 129, 182, 0, 125, 184, 0, 120, 186, 0, 116, 188, 0, 111, 189, 0, 107, 191, 0, 103, 193, 0, 98, 195, 0, 94, 196, 1, 89, 198, 3, 85, 200, 5, 80, 202, 8, 76,
-				204, 10, 71, 205, 12, 67, 207, 15, 63, 209, 18, 58, 210, 21, 54, 212, 24, 49, 213, 27, 45, 215, 31, 40, 217, 34, 36, 218, 37, 31, 220, 40, 27, 222, 44, 22, 224, 48,
-				17, 226, 51, 12, 227, 54, 8, 229, 58, 5, 231, 61, 4, 233, 65, 3, 234, 68, 2, 236, 72, 1, 238, 75, 0, 240, 79, 0, 241, 82, 0, 243, 85, 0, 245, 89, 0, 247, 92, 0,
-				249, 95, 0, 250, 99, 0, 251, 102, 0, 252, 105, 0, 253, 107, 0, 253, 110, 0, 253, 112, 0, 254, 115, 0, 255, 117, 0, 255, 119, 0, 255, 122, 0, 255, 125, 0, 255, 127,
-				0, 255, 129, 0, 255, 131, 0, 255, 134, 0, 255, 136, 0, 255, 138, 0, 255, 140, 0, 255, 142, 0, 255, 145, 0, 255, 147, 0, 255, 149, 0, 255, 151, 0, 255, 153, 0, 255,
-				155, 0, 255, 157, 0, 255, 159, 0, 255, 161, 0, 255, 163, 0, 255, 166, 0, 255, 168, 0, 255, 169, 0, 255, 171, 0, 255, 173, 0, 255, 176, 0, 255, 178, 0, 255, 180, 0,
-				255, 182, 0, 255, 184, 0, 255, 186, 0, 255, 189, 0, 255, 191, 0, 255, 193, 0, 255, 195, 0, 255, 197, 0, 255, 199, 0, 255, 201, 0, 255, 203, 0, 255, 205, 0, 255,
-				208, 0, 255, 210, 0, 255, 212, 0, 255, 213, 0, 255, 215, 0, 255, 217, 0, 255, 219, 0, 255, 220, 0, 255, 222, 0, 255, 224, 0, 255, 226, 0, 255, 228, 0, 255, 230, 0,
-				255, 232, 1, 255, 234, 3, 255, 236, 6, 255, 238, 10, 255, 239, 14, 255, 241, 18, 255, 243, 22, 255, 244, 27, 255, 246, 31, 255, 248, 37, 255, 248, 43, 255, 249, 50,
-				255, 250, 58, 255, 251, 66, 255, 252, 74, 255, 253, 81, 255, 254, 88, 255, 255, 95, 255, 255, 102, 255, 255, 108, 255, 255, 115, 255, 255, 122, 255, 255, 129, 255,
-				255, 136, 255, 255, 142, 255, 255, 148, 255, 255, 154, 255, 255, 161, 255, 255, 167, 255, 255, 174, 255, 255, 180, 255, 255, 185, 255, 255, 192, 255, 255, 198, 255,
-				255, 204, 255, 255, 210, 255, 255, 215, 255, 255, 221, 255, 255, 225, 255, 255, 228, 255, 255, 231, 255, 255, 234, 255, 255, 236, 255, 255, 239, 255, 255, 242, 255,
-				255, 244, 255, 255, 247, 255, 255, 249, 255, 255, 251, 255, 255, 253, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-				255, 255, 255, 255, 255, 255, 255, 255 };
+		private final int[] fireTable = { 0, 0, 31, 0, 0, 31, 0, 0, 33, 0, 0, 35, 0, 0, 37, 0, 0, 39, 0, 0, 41, 0, 0,
+				43, 0, 0, 45, 0, 0, 47, 0, 0, 49, 0, 0, 52, 0, 0, 54, 0, 0, 57, 0, 0, 59, 0, 0, 62, 0, 0, 64, 0, 0, 67,
+				0, 0, 70, 0, 0, 73, 0, 0, 76, 0, 0, 79, 0, 0, 82, 0, 0, 85, 0, 0, 88, 0, 0, 92, 2, 0, 96, 3, 0, 99, 5,
+				0, 102, 7, 0, 105, 10, 0, 108, 13, 0, 112, 15, 0, 116, 17, 0, 119, 20, 0, 122, 22, 0, 126, 25, 0, 130,
+				28, 0, 134, 31, 0, 138, 33, 0, 141, 35, 0, 145, 38, 0, 149, 41, 0, 152, 43, 0, 156, 46, 0, 160, 49, 0,
+				164, 52, 0, 168, 55, 0, 171, 58, 0, 175, 61, 0, 178, 64, 0, 181, 67, 0, 184, 70, 0, 188, 73, 0, 191, 76,
+				0, 195, 78, 0, 198, 81, 0, 202, 85, 0, 205, 88, 0, 209, 91, 0, 212, 94, 0, 216, 98, 0, 218, 101, 0, 220,
+				104, 0, 221, 107, 0, 222, 110, 0, 223, 113, 0, 224, 116, 0, 225, 119, 0, 226, 122, 0, 225, 126, 0, 224,
+				129, 0, 222, 133, 0, 219, 136, 0, 217, 140, 0, 214, 143, 0, 212, 146, 0, 209, 148, 0, 206, 150, 0, 202,
+				153, 0, 198, 155, 0, 193, 158, 0, 189, 160, 0, 185, 162, 0, 181, 163, 0, 177, 165, 0, 173, 166, 0, 168,
+				168, 0, 163, 170, 0, 159, 171, 0, 154, 173, 0, 151, 174, 0, 146, 176, 0, 142, 178, 0, 137, 179, 0, 133,
+				181, 0, 129, 182, 0, 125, 184, 0, 120, 186, 0, 116, 188, 0, 111, 189, 0, 107, 191, 0, 103, 193, 0, 98,
+				195, 0, 94, 196, 1, 89, 198, 3, 85, 200, 5, 80, 202, 8, 76, 204, 10, 71, 205, 12, 67, 207, 15, 63, 209,
+				18, 58, 210, 21, 54, 212, 24, 49, 213, 27, 45, 215, 31, 40, 217, 34, 36, 218, 37, 31, 220, 40, 27, 222,
+				44, 22, 224, 48, 17, 226, 51, 12, 227, 54, 8, 229, 58, 5, 231, 61, 4, 233, 65, 3, 234, 68, 2, 236, 72,
+				1, 238, 75, 0, 240, 79, 0, 241, 82, 0, 243, 85, 0, 245, 89, 0, 247, 92, 0, 249, 95, 0, 250, 99, 0, 251,
+				102, 0, 252, 105, 0, 253, 107, 0, 253, 110, 0, 253, 112, 0, 254, 115, 0, 255, 117, 0, 255, 119, 0, 255,
+				122, 0, 255, 125, 0, 255, 127, 0, 255, 129, 0, 255, 131, 0, 255, 134, 0, 255, 136, 0, 255, 138, 0, 255,
+				140, 0, 255, 142, 0, 255, 145, 0, 255, 147, 0, 255, 149, 0, 255, 151, 0, 255, 153, 0, 255, 155, 0, 255,
+				157, 0, 255, 159, 0, 255, 161, 0, 255, 163, 0, 255, 166, 0, 255, 168, 0, 255, 169, 0, 255, 171, 0, 255,
+				173, 0, 255, 176, 0, 255, 178, 0, 255, 180, 0, 255, 182, 0, 255, 184, 0, 255, 186, 0, 255, 189, 0, 255,
+				191, 0, 255, 193, 0, 255, 195, 0, 255, 197, 0, 255, 199, 0, 255, 201, 0, 255, 203, 0, 255, 205, 0, 255,
+				208, 0, 255, 210, 0, 255, 212, 0, 255, 213, 0, 255, 215, 0, 255, 217, 0, 255, 219, 0, 255, 220, 0, 255,
+				222, 0, 255, 224, 0, 255, 226, 0, 255, 228, 0, 255, 230, 0, 255, 232, 1, 255, 234, 3, 255, 236, 6, 255,
+				238, 10, 255, 239, 14, 255, 241, 18, 255, 243, 22, 255, 244, 27, 255, 246, 31, 255, 248, 37, 255, 248,
+				43, 255, 249, 50, 255, 250, 58, 255, 251, 66, 255, 252, 74, 255, 253, 81, 255, 254, 88, 255, 255, 95,
+				255, 255, 102, 255, 255, 108, 255, 255, 115, 255, 255, 122, 255, 255, 129, 255, 255, 136, 255, 255, 142,
+				255, 255, 148, 255, 255, 154, 255, 255, 161, 255, 255, 167, 255, 255, 174, 255, 255, 180, 255, 255, 185,
+				255, 255, 192, 255, 255, 198, 255, 255, 204, 255, 255, 210, 255, 255, 215, 255, 255, 221, 255, 255, 225,
+				255, 255, 228, 255, 255, 231, 255, 255, 234, 255, 255, 236, 255, 255, 239, 255, 255, 242, 255, 255, 244,
+				255, 255, 247, 255, 255, 249, 255, 255, 251, 255, 255, 253, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+				255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255 };
 
-		private final int[] tempTable = { 70, 0, 115, 70, 0, 115, 70, 0, 116, 70, 0, 118, 70, 0, 120, 70, 0, 122, 70, 0, 124, 70, 0, 126, 70, 0, 128, 70, 0, 131, 70, 0, 133, 70, 0,
-				136, 70, 0, 139, 70, 0, 141, 70, 0, 144, 70, 0, 147, 70, 0, 151, 70, 0, 154, 70, 0, 157, 70, 0, 160, 70, 0, 164, 70, 0, 167, 70, 0, 170, 70, 0, 174, 70, 0, 177, 70,
-				0, 181, 70, 0, 184, 70, 0, 188, 70, 0, 194, 70, 0, 200, 70, 0, 206, 70, 0, 211, 70, 0, 217, 70, 0, 222, 70, 0, 227, 70, 0, 232, 70, 0, 236, 70, 0, 240, 70, 0, 244,
-				69, 0, 248, 69, 0, 251, 68, 0, 253, 67, 2, 255, 66, 5, 255, 64, 9, 255, 63, 13, 255, 61, 17, 255, 59, 22, 255, 57, 27, 255, 55, 32, 255, 53, 38, 255, 51, 44, 255,
-				48, 50, 255, 45, 57, 255, 43, 63, 255, 40, 70, 255, 37, 77, 255, 34, 84, 255, 31, 91, 255, 28, 98, 255, 26, 106, 255, 23, 113, 254, 20, 121, 253, 17, 128, 252, 14,
-				136, 251, 12, 144, 250, 9, 152, 248, 6, 160, 247, 4, 168, 246, 2, 176, 245, 0, 183, 243, 0, 191, 242, 0, 198, 241, 0, 205, 240, 0, 212, 239, 0, 218, 238, 0, 224,
-				237, 0, 230, 236, 0, 235, 235, 0, 240, 235, 0, 245, 235, 0, 249, 234, 0, 253, 234, 1, 255, 234, 4, 255, 234, 7, 255, 234, 11, 255, 235, 16, 255, 236, 21, 255, 237,
-				27, 255, 238, 32, 255, 239, 39, 255, 240, 45, 255, 241, 52, 255, 243, 60, 255, 244, 68, 255, 246, 76, 255, 247, 84, 255, 249, 92, 255, 250, 101, 255, 252, 109, 255,
-				253, 117, 255, 254, 126, 255, 254, 134, 255, 254, 143, 255, 254, 152, 255, 254, 160, 255, 254, 168, 255, 254, 176, 255, 254, 184, 255, 254, 192, 255, 254, 199, 255,
-				254, 206, 255, 254, 213, 255, 254, 219, 255, 254, 225, 255, 254, 231, 255, 254, 236, 255, 254, 240, 255, 254, 244, 255, 254, 247, 255, 254, 250, 255, 254, 252, 254,
-				254, 253, 254, 254, 254, 254, 254, 254, 254, 252, 253, 254, 249, 252, 254, 246, 251, 254, 243, 249, 254, 239, 246, 254, 236, 243, 254, 231, 240, 254, 227, 237, 254,
-				223, 233, 254, 218, 228, 254, 213, 223, 255, 208, 219, 255, 203, 214, 255, 198, 208, 255, 192, 203, 255, 187, 196, 255, 181, 190, 255, 175, 184, 255, 169, 178, 255,
-				163, 171, 255, 157, 165, 255, 151, 158, 255, 145, 151, 255, 138, 144, 255, 132, 138, 255, 126, 129, 255, 118, 120, 255, 110, 112, 255, 102, 103, 255, 94, 95, 255,
-				87, 87, 255, 79, 79, 255, 72, 71, 255, 65, 64, 255, 58, 57, 255, 51, 51, 255, 45, 45, 255, 38, 39, 255, 32, 35, 255, 27, 30, 255, 22, 27, 255, 17, 24, 255, 13, 21,
-				255, 8, 20, 255, 5, 19, 255, 2, 19, 255, 1, 21, 255, 1, 23, 255, 1, 27, 255, 1, 32, 255, 1, 37, 255, 1, 44, 255, 1, 51, 255, 1, 59, 255, 1, 68, 255, 1, 77, 255, 1,
-				86, 255, 1, 97, 255, 3, 107, 255, 5, 118, 255, 8, 125, 255, 10, 131, 255, 12, 137, 255, 14, 144, 255, 16, 150, 255, 17, 156, 255, 19, 162, 255, 21, 168, 255, 23,
-				174, 255, 25, 180, 255, 26, 185, 255, 28, 191, 255, 30, 197, 254, 31, 202, 254, 33, 207, 252, 34, 212, 252, 36, 217, 250, 37, 222, 249, 38, 227, 248, 39, 231, 246,
-				40, 235, 245, 41, 238, 243, 42, 242, 241, 43, 245, 239, 43, 248, 237, 43, 251, 235, 44, 253, 233, 44, 255, 229, 44, 255, 226, 44, 255, 222, 43, 255, 218, 43, 255,
-				213, 42, 255, 208, 42, 255, 203, 41, 255, 198, 40, 255, 192, 40, 255, 187, 39, 255, 181, 38, 255, 175, 37, 255, 169, 36, 255, 162, 34, 255, 156, 33, 255, 149, 32,
-				255, 143, 31, 255, 136, 30, 255, 129, 28, 255, 122, 27, 255, 116, 25, 255, 109, 24, 255, 102, 23, 255, 95, 21, 255, 89, 20, 255, 82, 19, 255, 76, 17, 255, 70, 16,
-				255, 63, 15, 255, 57, 13, 255, 51, 12, 255, 45, 11, 255, 40, 10, 255, 35, 9, 255, 29, 7, 255, 25, 6, 255, 20, 6, 255, 16, 5, 255, 12, 4, 255, 8, 3, 255, 5, 3, 255,
-				2, 2, 255, 2, 2 };
+		private final int[] tempTable = { 70, 0, 115, 70, 0, 115, 70, 0, 116, 70, 0, 118, 70, 0, 120, 70, 0, 122, 70, 0,
+				124, 70, 0, 126, 70, 0, 128, 70, 0, 131, 70, 0, 133, 70, 0, 136, 70, 0, 139, 70, 0, 141, 70, 0, 144, 70,
+				0, 147, 70, 0, 151, 70, 0, 154, 70, 0, 157, 70, 0, 160, 70, 0, 164, 70, 0, 167, 70, 0, 170, 70, 0, 174,
+				70, 0, 177, 70, 0, 181, 70, 0, 184, 70, 0, 188, 70, 0, 194, 70, 0, 200, 70, 0, 206, 70, 0, 211, 70, 0,
+				217, 70, 0, 222, 70, 0, 227, 70, 0, 232, 70, 0, 236, 70, 0, 240, 70, 0, 244, 69, 0, 248, 69, 0, 251, 68,
+				0, 253, 67, 2, 255, 66, 5, 255, 64, 9, 255, 63, 13, 255, 61, 17, 255, 59, 22, 255, 57, 27, 255, 55, 32,
+				255, 53, 38, 255, 51, 44, 255, 48, 50, 255, 45, 57, 255, 43, 63, 255, 40, 70, 255, 37, 77, 255, 34, 84,
+				255, 31, 91, 255, 28, 98, 255, 26, 106, 255, 23, 113, 254, 20, 121, 253, 17, 128, 252, 14, 136, 251, 12,
+				144, 250, 9, 152, 248, 6, 160, 247, 4, 168, 246, 2, 176, 245, 0, 183, 243, 0, 191, 242, 0, 198, 241, 0,
+				205, 240, 0, 212, 239, 0, 218, 238, 0, 224, 237, 0, 230, 236, 0, 235, 235, 0, 240, 235, 0, 245, 235, 0,
+				249, 234, 0, 253, 234, 1, 255, 234, 4, 255, 234, 7, 255, 234, 11, 255, 235, 16, 255, 236, 21, 255, 237,
+				27, 255, 238, 32, 255, 239, 39, 255, 240, 45, 255, 241, 52, 255, 243, 60, 255, 244, 68, 255, 246, 76,
+				255, 247, 84, 255, 249, 92, 255, 250, 101, 255, 252, 109, 255, 253, 117, 255, 254, 126, 255, 254, 134,
+				255, 254, 143, 255, 254, 152, 255, 254, 160, 255, 254, 168, 255, 254, 176, 255, 254, 184, 255, 254, 192,
+				255, 254, 199, 255, 254, 206, 255, 254, 213, 255, 254, 219, 255, 254, 225, 255, 254, 231, 255, 254, 236,
+				255, 254, 240, 255, 254, 244, 255, 254, 247, 255, 254, 250, 255, 254, 252, 254, 254, 253, 254, 254, 254,
+				254, 254, 254, 254, 252, 253, 254, 249, 252, 254, 246, 251, 254, 243, 249, 254, 239, 246, 254, 236, 243,
+				254, 231, 240, 254, 227, 237, 254, 223, 233, 254, 218, 228, 254, 213, 223, 255, 208, 219, 255, 203, 214,
+				255, 198, 208, 255, 192, 203, 255, 187, 196, 255, 181, 190, 255, 175, 184, 255, 169, 178, 255, 163, 171,
+				255, 157, 165, 255, 151, 158, 255, 145, 151, 255, 138, 144, 255, 132, 138, 255, 126, 129, 255, 118, 120,
+				255, 110, 112, 255, 102, 103, 255, 94, 95, 255, 87, 87, 255, 79, 79, 255, 72, 71, 255, 65, 64, 255, 58,
+				57, 255, 51, 51, 255, 45, 45, 255, 38, 39, 255, 32, 35, 255, 27, 30, 255, 22, 27, 255, 17, 24, 255, 13,
+				21, 255, 8, 20, 255, 5, 19, 255, 2, 19, 255, 1, 21, 255, 1, 23, 255, 1, 27, 255, 1, 32, 255, 1, 37, 255,
+				1, 44, 255, 1, 51, 255, 1, 59, 255, 1, 68, 255, 1, 77, 255, 1, 86, 255, 1, 97, 255, 3, 107, 255, 5, 118,
+				255, 8, 125, 255, 10, 131, 255, 12, 137, 255, 14, 144, 255, 16, 150, 255, 17, 156, 255, 19, 162, 255,
+				21, 168, 255, 23, 174, 255, 25, 180, 255, 26, 185, 255, 28, 191, 255, 30, 197, 254, 31, 202, 254, 33,
+				207, 252, 34, 212, 252, 36, 217, 250, 37, 222, 249, 38, 227, 248, 39, 231, 246, 40, 235, 245, 41, 238,
+				243, 42, 242, 241, 43, 245, 239, 43, 248, 237, 43, 251, 235, 44, 253, 233, 44, 255, 229, 44, 255, 226,
+				44, 255, 222, 43, 255, 218, 43, 255, 213, 42, 255, 208, 42, 255, 203, 41, 255, 198, 40, 255, 192, 40,
+				255, 187, 39, 255, 181, 38, 255, 175, 37, 255, 169, 36, 255, 162, 34, 255, 156, 33, 255, 149, 32, 255,
+				143, 31, 255, 136, 30, 255, 129, 28, 255, 122, 27, 255, 116, 25, 255, 109, 24, 255, 102, 23, 255, 95,
+				21, 255, 89, 20, 255, 82, 19, 255, 76, 17, 255, 70, 16, 255, 63, 15, 255, 57, 13, 255, 51, 12, 255, 45,
+				11, 255, 40, 10, 255, 35, 9, 255, 29, 7, 255, 25, 6, 255, 20, 6, 255, 16, 5, 255, 12, 4, 255, 8, 3, 255,
+				5, 3, 255, 2, 2, 255, 2, 2 };
 
 		void spectrum() {
 			Color c;
@@ -2395,7 +2433,8 @@ public class SurfaceMap3D implements Runnable {
 			int c = (x1 - x3) * (y - y3) - (y1 - y3) * (x - x3);
 
 			if ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0)) return true;
-			else return false;
+			else
+				return false;
 		}
 
 		static boolean inside(int x, int y, int x1, int y1, int x2, int y2, int x3, int y3) {
@@ -2405,7 +2444,8 @@ public class SurfaceMap3D implements Runnable {
 			int c = (x1 - x3) * (y - y3) - (y1 - y3) * (x - x3);
 
 			if ((a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0)) return true;
-			else return false;
+			else
+				return false;
 		}
 
 	}

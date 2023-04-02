@@ -17,7 +17,6 @@
 	    <zip destfile="${cls}" basedir="bin" />
 		<jar destfile="${jar}" basedir="bin" />
 		<copy file="${jar}" toDir="../../Imaging-Software/ImageJ.app/plugins/" />	
-		<copy toDir="bin/imageware"><fileset dir="imageware"/></copy>
 	</target>
 			
 	<!-- Clean classes, jar and zip -->

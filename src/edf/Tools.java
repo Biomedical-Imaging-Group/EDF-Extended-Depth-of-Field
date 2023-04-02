@@ -1,48 +1,44 @@
-/*
- * EDF Extended Depth of Field
- * http://bigwww.epfl.ch/demo/edf/
- *
- * Organization: Biomedical Imaging Group (BIG)
- * Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
- * Authors: Daniel Sage, Alex Prudencio, Jesse Berent, Niels Quack, Brigitte Forster
+/* 
+ * EDF - Extended Depth of Field
  * 
- * Reference: B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser
- * Complex Wavelets for Extended Depth-of-Field: A New Method for the Fusion
- * of Multichannel Microscopy Images, Microscopy Research and Techniques, 2004
- * 
- * Condition of use: We expect you to include adequate citation whenever you present 
- * or publish results that are based on it.
- * 
- * History:
- * - Updated (Daniel Sage, 21 December 2010)
- * - Updated (Daniel Sage, 17 May 2021)
+ * Reference: B. Forster et al., Complex Wavelets for Extended Depth-of-Field: 
+ * A New Method for the Fusion of Multichannel Microscopy Images, 
+ * Microscopy Research and Techniques, 2004.
  */
 
 /*
- * BSD 2-Clause License
- *
- * Copyright (c) 2007-2021, EPFL, All rights reserved.
+ * Copyright 2006-2023 Biomedical Imaging Group at the EPFL.
  * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *  this list of conditions and the following disclaimer in the documentation
- *  and/or other materials provided with the distribution.
+ * EDF is free software: you can redistribute it and/or modify it under the terms of the GNU 
+ * General Public License as published by the Free Software Foundation, either version 3 of 
+ * the License, or (at your option) any later version.
  * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * EDF is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * EDF. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* 
+ * Java Code Project: EDF - Extended Depth of Focus
+ * 
+ * Author: Daniel Sage
+ * Organization: Biomedical Imaging Group (BIG)
+ * Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
+ *
+ * Information: http://bigwww.epfl.ch/demo/edf/
+ *
+ * References: 
+ * B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser
+ * Complex Wavelets for Extended Depth-of-Field: A New Method for the Fusion
+ * of Multichannel Microscopy Images, Microscopy Research and Techniques, 
+ * 65(1-2), pp. 33-42, September 2004.
+ * *
+ * B. Forster, D. Van De Ville, J. Berent, D. Sage, M. Unser, 
+ * Extended Depth-of-Focus for Multi-Channel Microscopy Images 
+ * Proceedings of IEEE International Symposium on Biomedical Imaging, 2004.
  */
 
 package edf;
@@ -58,7 +54,8 @@ import imageware.ImageWare;
 public class Tools {
 
 	/**
-	 * Determine the number of scale and the size of the image for the wavelet-based methods.
+	 * Determine the number of scale and the size of the image for the wavelet-based
+	 * methods.
 	 */
 	public static int[] computeScaleAndPowerTwoSize(int nx, int ny) {
 		int scale = 1;
@@ -69,14 +66,16 @@ public class Tools {
 		while (lx > 1) {
 			scalex++;
 			if (lx % 2 == 0) lx = lx / 2;
-			else lx = (lx + 1) / 2;
+			else
+				lx = (lx + 1) / 2;
 		}
 		int ly = ny;
 		int scaley = 0;
 		while (ly > 1) {
 			scaley++;
 			if (ly % 2 == 0) ly = ly / 2;
-			else ly = (ly + 1) / 2;
+			else
+				ly = (ly + 1) / 2;
 		}
 		scale = (scalex < scaley ? scalex : scaley);
 		mx = lx * FMath.round(Math.pow(2, scalex));
@@ -172,7 +171,8 @@ public class Tools {
 	}
 
 	/**
-	 * Compute the threshold corresponding to a percentage of values (rate) in an image. The answer is a approximation based on a cumulative histogram.
+	 * Compute the threshold corresponding to a percentage of values (rate) in an
+	 * image. The answer is a approximation based on a cumulative histogram.
 	 *
 	 * @param image image
 	 * @param rate  percentage of null values [0%..100%]
@@ -204,14 +204,16 @@ public class Tools {
 		double dist;
 
 		if (nbPointFore == nbPointBack) dist = 0.5;
-		else dist = (thresholdGoal - nbPointBack) / (nbPointFore - nbPointBack);
+		else
+			dist = (thresholdGoal - nbPointBack) / (nbPointFore - nbPointBack);
 
 		return dist * histogram[index][0] + (1.0 - dist) * histogram[index - 1][0];
 	}
 
 	/**
-	 * Generate a histogram with a specified number of bins. The result is an array of two columns, the first the position of quantized levels and the second contains the number of
-	 * pixel corresponding to the quantized levels.
+	 * Generate a histogram with a specified number of bins. The result is an array
+	 * of two columns, the first the position of quantized levels and the second
+	 * contains the number of pixel corresponding to the quantized levels.
 	 *
 	 * @param image      input image
 	 * @param numberBins number of bins
