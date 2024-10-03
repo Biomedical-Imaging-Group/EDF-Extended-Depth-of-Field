@@ -24,7 +24,7 @@
 /* 
  * Java Code Project: EDF - Extended Depth of Focus
  * 
- * Author: Daniel Sage, ALex Prudencio
+ * Author: Daniel Sage
  * Organization: Biomedical Imaging Group (BIG)
  * Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland
  *
