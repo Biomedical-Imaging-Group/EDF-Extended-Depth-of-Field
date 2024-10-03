@@ -1,11 +1,15 @@
 # EDF Extended Depth of Field
 
 An ImageJ plugin for stack focusing. Implementation of several algorithms form max-variance to max-wavelets.  https://bigwww.epfl.ch/demo/edf/
+
 ---
+
 Written by [Daniel Sage](https://bigwww.epfl.ch/sage/) et al.
 [Biomedical Imaging Group](https://bigwww.epfl.ch/) (BIG)
 [Ecole Polytechnique Federale de Lausanne](https://www.epfl.ch/) (EPFL), Lausanne, Switzerland
+
 ---
+
 ![alt text](edf_illustration_fly.jpg "Illustration")
 
 ### Reference
